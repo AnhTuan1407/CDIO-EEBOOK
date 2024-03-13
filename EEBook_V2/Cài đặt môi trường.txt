@@ -1,0 +1,2 @@
+BE: Java, tool intelliJ
+FE: Angular, Node 16.5.1, tool webstorm

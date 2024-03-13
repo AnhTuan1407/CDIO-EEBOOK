@@ -1,0 +1,39 @@
+.container{
+  font-size: 16px;
+}
+.form-group {
+  position: relative;
+
+}
+
+.error-message{
+  color: red;
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.error-message.active {
+  visibility: visible;
+}
+.form-group {
+  position: relative;
+  margin-bottom: 20px; /* Điều chỉnh khoảng cách giữa các form group */
+}
+
+.error-message {
+  color: red;
+  visibility: hidden;
+  position: absolute;
+  top: 100%; /* Điều chỉnh khoảng cách từ form group xuống thông báo lỗi */
+  transform: translateY(5px); /* Điều chỉnh khoảng cách thêm, nếu cần */
+}
+
+.error-message.active {
+  visibility: visible;
+}
+
+
+
+

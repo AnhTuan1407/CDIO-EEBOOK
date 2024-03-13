@@ -1,0 +1,7 @@
+.name {
+  display: block;
+  width: 5ch;
+  overflow: revert;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

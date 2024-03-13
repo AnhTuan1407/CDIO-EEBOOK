@@ -1,0 +1,86 @@
+<p-toast></p-toast>
+
+<section class="checkout spad">
+  <div class="container">
+    <div class="checkout__form">
+      <h4>Thông tin giao hàng</h4>
+      <form action="#">
+        <div class="row">
+          <div class="col-lg-8 col-md-6">
+                <div class="checkout__input">
+                  <p>Họ và tên<span>*</span></p>
+                  <input type="text" [(ngModel)]="orderForm.name" name="name">
+                </div>
+                <div class="checkout__input">
+                  <p>Số điện thoại<span>*</span></p>
+                  <input type="text" [(ngModel)]="orderForm.phoneNumber" name="phoneNumber">
+                </div>
+            <div class="checkout__input">
+              <p>Email<span>*</span></p>
+              <input type="text" [(ngModel)]="orderForm.email" name="email">
+            </div>
+            <div class="checkout__input">
+              <p>Quốc gia<span>*</span></p>
+              <input type="text" [(ngModel)]="orderForm.country" name="country">
+            </div>
+            <div class="checkout__input">
+              <p>Tỉnh/Thành phố<span>*</span></p>
+              <input type="text" [(ngModel)]="orderForm.city" name="city">
+            </div>
+            <div class="checkout__input">
+              <p>Quận/Huyện<span>*</span></p>
+              <input type="text" [(ngModel)]="orderForm.district" name="district">
+            </div>
+            <div class="checkout__input">
+              <p>Phường/Xã<span>*</span></p>
+              <input type="text" [(ngModel)]="orderForm.ward" name="ward">
+            </div>
+
+            <div class="checkout__input">
+              <p>Địa chỉ nhận cụ thể<span>*</span></p>
+              <input type="text" [(ngModel)]="orderForm.address" name="address">
+            </div>
+
+
+
+
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="checkout__order">
+              <h4>Đơn hàng của bạn</h4>
+              <div class="checkout__order__products">Sản phẩm <span>Giá</span></div>
+
+              <ul>
+                <li *ngFor="let item of cartService.items">
+                  <p class="name">{{item.name}}</p> <span>{{item.subTotal | currency}}</span>
+                </li>
+              </ul>
+
+
+
+              <div class="checkout__order__sale">Sale <span>0%</span></div>
+              <div class="checkout__order__total">Total <span>{{cartService.total | currency }}</span></div>
+
+              <div class="checkout__input__radio">
+                <label for="payment">
+                  Tiền mặt
+                  <input type="radio" id="payment" name="paymentMethod">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="checkout__input__radio">
+                <label for="VNPay">
+                  VNPay
+                  <input type="radio" id="VNPay" style="margin-left: 11px" name="paymentMethod">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+
+              <button type="submit" class="site-btn" (click)="placeOrder()">Thanh toán</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

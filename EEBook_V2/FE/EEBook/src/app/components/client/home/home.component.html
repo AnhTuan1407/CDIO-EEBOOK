@@ -1,0 +1,490 @@
+<p-toast></p-toast>
+
+<section>
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="" style="margin-right: -440px">
+        <div class="hero__item set-bg right" [ngStyle]="{backgroundImage:'url(assets/image/banner-tet.png'}"
+             style="margin-left: 300px">
+          <div class="hero__text">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Hero Section End -->
+
+<!-- Categories Section Begin -->
+
+<section class="categories" style="margin-left: 430px; margin-top: 80px">
+  <div class="container">
+    <div class="row">
+      <p-carousel [value]="category_items" [numScroll]="1" [numVisible]="4" [circular]="true" [showIndicators]="false"
+                  [autoplayInterval]="4000">
+        <ng-template let-item pTemplate="item">
+          <div class="col" style="text-align: center; display: flex; flex-direction: column; justify-content: center;">
+            <div class="categories__item set-bg" [ngStyle]="{'background-image': 'url('+ item.src +')'}"
+                 style="width: 60px; height: 60px; margin-left: 100px">
+            </div>
+            <p style="margin-left: -10px; color: black">{{item.title}}</p>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="fs_bg">
+    <div class="flashsale-slider">
+      <div class="flashsale_header">
+        <div class="flashsale_header_left">
+          <div class="flashsale_left">
+            <a href="#">
+              <img src="assets/image/fs_banner.png" alt="">
+            </a>
+          </div>
+          <div class="flashsale_big">
+            <span class="flashsale-label">Kết thúc trong</span>
+          </div>
+          <div class="flashsale_right">
+            <span id="hours" class="flashsale-countdown-number">00</span>
+            <span>:</span>
+            <span id="minutes" class="flashsale-countdown-number">00</span>
+            <span>:</span>
+            <span id="seconds" class="flashsale-countdown-number">00</span>
+          </div>
+        </div>
+        <div class="flashsale_header_right">
+          <a href="" class="flashsale_center">
+            <span class="btn_fs">Xem tất cả</span>
+<!--            <div class="fas fa-angle-right"></div>-->
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="swiper fhs-product-slider-content" id="flashsale_slider" style="width: 80%">
+      <div class="swiper-container swiper-container-horizontal"
+           style="position: absolute;top: 60%;left: 50%;transform: translate(-50%, -50%);">
+        <ul class="swiper-wrapper fhs-product-slider-list">
+          <ng-container>
+            <li class="swiper-slide">
+              <div class="item-inner" style="margin-left: 120px">
+                <div class="ma-box-content" *ngFor="let product of listProductNewest" style="margin-left: 20px">
+                  <div class="ma-box-content" *ngIf="product.flashSale == 1">
+                  <div class="product clear">
+                    <div class="product images-container" style="width: 300px; height: 260px">
+                      <div class="featured__item">
+                        <div style="margin-top: 20px" class="featured__item__pic set-bg"
+                             [ngStyle]="{'background-image': 'url(data:image/jpeg;base64,'+ product.images[0].data+')'}">
+                          <ul class="featured__item__pic__hover">
+                            <li><a href="javascript:void(0)" (click)="addToWishList(product)">
+                              <fa-icon [icon]="heart"></fa-icon>
+                            </a></li>
+                            <li><a href="javascript:void(0)" routerLink="/product/{{product.id}}">
+                              <fa-icon [icon]="retweet"></fa-icon>
+                            </a></li>
+                            <li><a href="javascript:void(0)" (click)="addToCart(product)">
+                              <fa-icon [icon]="bag"></fa-icon>
+                            </a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h2 class="featured__item__text">
+                      <a style="font-size: 20px">{{product.name}}</a>
+                    </h2>
+                    <div style="margin: 18px">
+                      <p class="special-price">
+                      <div style="font-size: 20px" class="price-font">{{product.price-product.price*product.discount/100 | number:'1.0-0'}} đ   <span style="font-size: 20px"
+                                                                                      class="discount">{{'-'+product.discount+'%'}}</span></div>
+                      <span style="font-size: 20px" class="price-old">{{product.price | number:'1.0-0'}} đ </span>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="title">
+    <h3>Sản phẩm nổi bật trong ngày</h3>
+  </div>
+  <div class="category_product">
+    <div class="btn-cat" style="">
+      <button class="cat-btn small-cat-btn" id="btn-cat-93" onclick="showCategory('cat-1')">Thiếu nhi</button>
+      <button class="cat-btn small-cat-btn" id="btn-cat-103" onclick="showCategory('cat-2')">Văn học</button>
+      <button class="cat-btn small-cat-btn" id="btn-cat-113" onclick="showCategory('cat-3')">Kinh tế</button>
+      <button class="cat-btn small-cat-btn" id="btn-cat-123" onclick="showCategory('cat-4')">Sách ngoại ngữ</button>
+    </div>
+  </div>
+  <div class="tab-container">
+    <div class="full-tab-container">
+      <div class="container-cat-1" style="display: flex; flex-wrap: wrap; justify-content: space-between; overflow-x: auto;">
+        <div class="container-tab" style="display: flex;">
+          <!-- Các sản phẩm trong hàng thứ nhất -->
+          <div class="ma-box-content-cat" style="padding-right: 100px" *ngFor="let product of listProductNewest; let i = index">
+            <div class="product clear" style="flex: 0 0 auto; margin-right: 10px;">
+              <div class="product images-container">
+                <div class="featured__item">
+                  <div style="margin-top: 20px" class="featured__item__pic set-bg"
+                       [ngStyle]="{'background-image': 'url(data:image/jpeg;base64,'+ product.images[0].data+')'}">
+                    <ul class="featured__item__pic__hover">
+                      <li><a href="javascript:void(0)" (click)="addToWishList(product)">
+                        <fa-icon [icon]="heart"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" routerLink="/product/{{product.id}}">
+                        <fa-icon [icon]="retweet"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" (click)="addToCart(product)">
+                        <fa-icon [icon]="bag"></fa-icon>
+                      </a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h2 class="featured__item__text">
+                  <a style="font-size: 20px">{{product.name}}</a>
+                </h2>
+                <div style="margin: 18px">
+                  <p class="special-price">
+                  <div style="font-size: 20px" class="price-font">{{product.price-product.price*product.discount/100 | number:'1.0-0'}} đ  <span *ngIf="product.flashSale==1" style="font-size: 20px" class="discount">{{'-'+product.discount+'%'}}</span></div>
+                  <span style="font-size: 20px" class="price-old">{{product.price| number:'1.0-0'}} đ </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Các sản phẩm trong hàng thứ hai -->
+          <div class="ma-box-content-cat" style="padding-right: 100px" *ngFor="let product of listProductNewest; let i = index" [ngStyle]="{'display': i > 5 ? 'block' : 'none'}">
+            <div class="product clear" style="flex: 0 0 auto; margin-right: 10px;">
+              <div class="product images-container">
+                <div class="featured__item">
+                  <div style="margin-top: 20px" class="featured__item__pic set-bg"
+                       [ngStyle]="{'background-image': 'url(data:image/jpeg;base64,'+ product.images[0].data+')'}">
+                    <ul class="featured__item__pic__hover">
+                      <li><a href="javascript:void(0)" (click)="addToWishList(product)">
+                        <fa-icon [icon]="heart"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" routerLink="/product/{{product.id}}">
+                        <fa-icon [icon]="retweet"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" (click)="addToCart(product)">
+                        <fa-icon [icon]="bag"></fa-icon>
+                      </a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h2 class="featured__item__text">
+                  <a style="font-size: 20px">{{product.name}}</a>
+                </h2>
+                <div style="margin: 18px">
+                  <p class="special-price">
+                  <div style="font-size: 20px" class="price-font">{{product.price-product.price*product.discount/100 | number:'1.0-0'}} đ   <span *ngIf="product.flashSale==1" style="font-size: 20px" class="discount">{{'-'+product.discount+'%'}}</span></div>
+                  <span style="font-size: 20px" class="price-old">{{product.price | number:'1.0-0'}} đ </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section style="margin-top: 50px">
+  <div class="title">
+    <h3>Sản phẩm mới</h3>
+  </div>
+  <div class="category_product">
+    <div class="btn-cat" style="">
+      <button class="cat-btn small-cat-btn" id="btn-cat-29" onclick="showCategory('cat-1')">Thiếu nhi</button>
+      <button class="cat-btn small-cat-btn" id="btn-cat-102" onclick="showCategory('cat-2')">Văn học</button>
+      <button class="cat-btn small-cat-btn" id="btn-cat-112" onclick="showCategory('cat-3')">Kinh tế</button>
+      <button class="cat-btn small-cat-btn" id="btn-cat-122" onclick="showCategory('cat-4')">Sách ngoại ngữ</button>
+    </div>
+  </div>
+  <div class="tab-container">
+    <div class="full-tab-container">
+      <div class="container-cat-1" style="display: flex; flex-wrap: wrap; justify-content: space-between; overflow-x: auto;">
+        <div class="container-tab" style="display: flex;">
+          <!-- Các sản phẩm trong hàng thứ nhất -->
+          <div class="ma-box-content-cat" style="padding-right: 100px" *ngFor="let product of listProductNewest; let i = index">
+            <div class="product clear" style="flex: 0 0 auto; margin-right: 10px;">
+              <div class="product images-container">
+                <div class="featured__item">
+                  <div style="margin-top: 20px" class="featured__item__pic set-bg"
+                       [ngStyle]="{'background-image': 'url(data:image/jpeg;base64,'+ product.images[0].data+')'}">
+                    <ul class="featured__item__pic__hover">
+                      <li><a href="javascript:void(0)" (click)="addToWishList(product)">
+                        <fa-icon [icon]="heart"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" routerLink="/product/{{product.id}}">
+                        <fa-icon [icon]="retweet"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" (click)="addToCart(product)">
+                        <fa-icon [icon]="bag"></fa-icon>
+                      </a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h2 class="featured__item__text">
+                  <a style="font-size: 20px">{{product.name}}</a>
+                </h2>
+                <div style="margin: 18px">
+                  <p class="special-price">
+                  <div style="font-size: 20px" class="price-font">{{product.price-product.price*product.discount/100 | number:'1.0-0'}} đ   <span *ngIf="product.flashSale==1" style="font-size: 20px" class="discount">{{'-'+product.discount+'%'}}</span></div>
+                  <span style="font-size: 20px" class="price-old">{{product.price | number:'1.0-0'}} đ </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Các sản phẩm trong hàng thứ hai -->
+          <div class="ma-box-content-cat" style="padding-right: 100px" *ngFor="let product of listProductNewest; let i = index" [ngStyle]="{'display': i > 5 ? 'block' : 'none'}">
+            <div class="product clear" style="flex: 0 0 auto; margin-right: 10px;">
+              <div class="product images-container">
+                <div class="featured__item">
+                  <div style="margin-top: 20px" class="featured__item__pic set-bg"
+                       [ngStyle]="{'background-image': 'url(data:image/jpeg;base64,'+ product.images[0].data+')'}">
+                    <ul class="featured__item__pic__hover">
+                      <li><a href="javascript:void(0)" (click)="addToWishList(product)">
+                        <fa-icon [icon]="heart"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" routerLink="/product/{{product.id}}">
+                        <fa-icon [icon]="retweet"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" (click)="addToCart(product)">
+                        <fa-icon [icon]="bag"></fa-icon>
+                      </a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h2 class="featured__item__text">
+                  <a style="font-size: 20px">{{product.name}}</a>
+                </h2>
+                <div style="margin: 18px">
+                  <p class="special-price">
+                  <div style="font-size: 20px" class="price-font">{{product.price-product.price*product.discount/100 | number:'1.0-0'}} đ  <span *ngIf="product.flashSale==1" style="font-size: 20px" class="discount">{{'-'+product.discount+'%'}}</span></div>
+                  <span style="font-size: 20px" class="price-old">{{product.price | number:'1.0-0'}} đ </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="title">
+    <h3>Sản phẩm mua nhiều</h3>
+  </div>
+  <div class="category_product">
+    <div class="btn-cat" style="">
+      <button class="cat-btn small-cat-btn" id="btn-cat-9" onclick="showCategory('cat-1')">Thiếu nhi</button>
+      <button class="cat-btn small-cat-btn" id="btn-cat-10" onclick="showCategory('cat-2')">Văn học</button>
+      <button class="cat-btn small-cat-btn" id="btn-cat-11" onclick="showCategory('cat-3')">Kinh tế</button>
+      <button class="cat-btn small-cat-btn" id="btn-cat-12" onclick="showCategory('cat-4')">Sách ngoại ngữ</button>
+    </div>
+  </div>
+
+  <div class="tab-container">
+    <div class="full-tab-container">
+      <div class="container-cat-1" style="display: flex; flex-wrap: wrap; justify-content: space-between; overflow-x: auto;">
+        <div class="container-tab" style="display: flex;">
+          <!-- Các sản phẩm trong hàng thứ nhất -->
+          <div class="ma-box-content-cat" style="padding-right: 100px" *ngFor="let product of listProductNewest; let i = index">
+            <div class="product clear" style="flex: 0 0 auto; margin-right: 10px;">
+              <div class="product images-container">
+                <div class="featured__item">
+                  <div style="margin-top: 20px" class="featured__item__pic set-bg"
+                       [ngStyle]="{'background-image': 'url(data:image/jpeg;base64,'+ product.images[0].data+')'}">
+                    <ul class="featured__item__pic__hover">
+                      <li><a href="javascript:void(0)" (click)="addToWishList(product)">
+                        <fa-icon [icon]="heart"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" routerLink="/product/{{product.id}}">
+                        <fa-icon [icon]="retweet"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" (click)="addToCart(product)">
+                        <fa-icon [icon]="bag"></fa-icon>
+                      </a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h2 class="featured__item__text">
+                  <a style="font-size: 20px">{{product.name}}</a>
+                </h2>
+                <div style="margin: 18px">
+                  <p class="special-price">
+                  <div style="font-size: 20px" class="price-font">{{product.price-product.price*product.discount/100 | number:'1.0-0'}} đ  <span *ngIf="product.flashSale==1" style="font-size: 20px" class="discount">{{'-'+product.discount+'%'}}</span></div>
+                  <span style="font-size: 20px" class="price-old">{{product.price | number:'1.0-0'}} đ </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Các sản phẩm trong hàng thứ hai -->
+          <div class="ma-box-content-cat" style="padding-right: 100px" *ngFor="let product of listProductNewest; let i = index" [ngStyle]="{'display': i > 5 ? 'block' : 'none'}">
+            <div class="product clear" style="flex: 0 0 auto; margin-right: 10px;">
+              <div class="product images-container">
+                <div class="featured__item">
+                  <div style="margin-top: 20px" class="featured__item__pic set-bg"
+                       [ngStyle]="{'background-image': 'url(data:image/jpeg;base64,'+ product.images[0].data+')'}">
+                    <ul class="featured__item__pic__hover">
+                      <li><a href="javascript:void(0)" (click)="addToWishList(product)">
+                        <fa-icon [icon]="heart"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" routerLink="/product/{{product.id}}">
+                        <fa-icon [icon]="retweet"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" (click)="addToCart(product)">
+                        <fa-icon [icon]="bag"></fa-icon>
+                      </a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h2 class="featured__item__text">
+                  <a style="font-size: 20px">{{product.name}}</a>
+                </h2>
+                <div style="margin: 18px">
+                  <p class="special-price">
+                  <div style="font-size: 20px" class="price-font">{{product.price-product.price*product.discount/100 | number:'1.0-0'}} đ  <span *ngIf="product.flashSale==1" style="font-size: 20px" class="discount">{{'-'+product.discount+'%'}}</span></div>
+                  <span style="font-size: 20px" class="price-old">{{product.price | number:'1.0-0'}} đ </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="title">
+    <h3>Truyện thiếu nhi</h3>
+  </div>
+  <div class="category_product">
+    <div class="btn-cat" style="">
+      <button class="cat-btn small-cat-btn" id="btn-cat-91" onclick="showCategory('cat-1')">Thiếu nhi</button>
+      <button class="cat-btn small-cat-btn" id="btn-cat-101" onclick="showCategory('cat-2')">Văn học</button>
+      <button class="cat-btn small-cat-btn" id="btn-cat-111" onclick="showCategory('cat-3')">Kinh tế</button>
+      <button class="cat-btn small-cat-btn" id="btn-cat-121" onclick="showCategory('cat-4')">Sách ngoại ngữ</button>
+    </div>
+  </div>
+  <div class="tab-container">
+    <div class="full-tab-container">
+      <div class="container-cat-1" style="display: flex; flex-wrap: wrap; justify-content: space-between; overflow-x: auto;">
+        <div class="container-tab" style="display: flex;">
+          <!-- Các sản phẩm trong hàng thứ nhất -->
+          <div class="ma-box-content-cat" style="padding-right: 100px" *ngFor="let product of listProductNewest; let i = index">
+            <div class="product clear" style="flex: 0 0 auto; margin-right: 10px;">
+              <div class="product images-container">
+                <div class="featured__item">
+                  <div style="margin-top: 20px" class="featured__item__pic set-bg"
+                       [ngStyle]="{'background-image': 'url(data:image/jpeg;base64,'+ product.images[0].data+')'}">
+                    <ul class="featured__item__pic__hover">
+                      <li><a href="javascript:void(0)" (click)="addToWishList(product)">
+                        <fa-icon [icon]="heart"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" routerLink="/product/{{product.id}}">
+                        <fa-icon [icon]="retweet"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" (click)="addToCart(product)">
+                        <fa-icon [icon]="bag"></fa-icon>
+                      </a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h2 class="featured__item__text">
+                  <a style="font-size: 20px">{{product.name}}</a>
+                </h2>
+                <div style="margin: 18px">
+                  <p class="special-price">
+                  <div style="font-size: 20px" class="price-font">{{product.price-product.price*product.discount/100 | number:'1.0-0'}} đ  <span *ngIf="product.flashSale==1" style="font-size: 20px" class="discount">{{'-'+product.discount+'%'}}</span></div>
+                  <span style="font-size: 20px" class="price-old">{{product.price | number:'1.0-0'}} đ </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Các sản phẩm trong hàng thứ hai -->
+          <div class="ma-box-content-cat" style="padding-right: 100px" *ngFor="let product of listProductNewest; let i = index" [ngStyle]="{'display': i > 5 ? 'block' : 'none'}">
+            <div class="product clear" style="flex: 0 0 auto; margin-right: 10px;">
+              <div class="product images-container">
+                <div class="featured__item">
+                  <div style="margin-top: 20px" class="featured__item__pic set-bg"
+                       [ngStyle]="{'background-image': 'url(data:image/jpeg;base64,'+ product.images[0].data+')'}">
+                    <ul class="featured__item__pic__hover">
+                      <li><a href="javascript:void(0)" (click)="addToWishList(product)">
+                        <fa-icon [icon]="heart"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" routerLink="/product/{{product.id}}">
+                        <fa-icon [icon]="retweet"></fa-icon>
+                      </a></li>
+                      <li><a href="javascript:void(0)" (click)="addToCart(product)">
+                        <fa-icon [icon]="bag"></fa-icon>
+                      </a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h2 class="featured__item__text">
+                  <a style="font-size: 20px">{{product.name}}</a>
+                </h2>
+                <div style="margin: 18px">
+                  <p class="">
+                  <div style="font-size: 20px" class="">{{(product.price - product.price * product.discount / 100) | number:'1.0-0'}} đ <span *ngIf="product.flashSale==1" style="font-size: 20px" class="discount">{{'-'+product.discount+'%'}}</span></div>
+                  <span style="font-size: 20px" class="price-old">{{product.price | number:'1.0-0'}} đ</span>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

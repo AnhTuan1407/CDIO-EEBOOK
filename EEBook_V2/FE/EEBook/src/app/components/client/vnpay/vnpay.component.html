@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <img src="assets/image/vnpay.png" style="width: 200px" alt="">
+          <h2 class="card-title" style="font-size: 25px">Xác nhận thanh toán đơn hàng</h2>
+          <form (ngSubmit)="submitOrder()" #register="ngForm">
+            <div class="form-group">
+              <label for="amount">Số tiền:</label>
+              <input type="text" class="form-control" id="amount" name="amount" required [(ngModel)]="this.orderTotal" readonly >
+            </div>
+            <div class="form-group">
+              <label for="orderInfo">Mã đơn hàng</label>
+              <input type="text" class="form-control" id="numbercode" name="numbercode" required [(ngModel)]="numberCode" readonly #info="ngModel">
+              <p class="error-message active" *ngIf="info.touched && !info.value || info.value===''">
+                <span style="color: red">Trường này không được để trống</span>
+              </p>
+            </div>
+
+
+            <div class="form-group">
+              <label for="orderInfo">Thông tin đơn hàng:</label>
+              <input type="text" class="form-control" id="orderInfo" name="orderInfo" required [(ngModel)]="orderInfo" readonly #info="ngModel">
+
+              <p class="error-message active" *ngIf="info.touched && !info.value || info.value===''">
+                <span style="color: red">Trường này không được để trống</span>
+              </p>
+            </div>
+
+            <div>
+            <button type="submit" class="btn btn-outline-primary" [disabled]="register.form.status==='INVALID'"  style="margin-top: 10px">Thanh toán</button>
+            <button type="submit" routerLink="/checkout" class="btn btn-outline-primary" style="margin-left: 400px; margin-top: -60px">Quay lại</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
